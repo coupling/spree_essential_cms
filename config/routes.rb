@@ -5,7 +5,7 @@ class Spree::PossiblePage
   end
 end
 
-Spree::Core::Engine.routes.append do
+Spree::Core::Engine.routes.draw do
   
   namespace :admin do
     
@@ -28,6 +28,9 @@ Spree::Core::Engine.routes.append do
     end
 
   end
+end
+
+Spree::Core::Engine.routes.append do
   
   constraints(Spree::PossiblePage) do
     get '(:page_path)', :to => 'pages#show', :page_path => /.*/, :as => :page
