@@ -7,7 +7,6 @@ class Spree::PossiblePage
 end
 
 Spree::Core::Engine.routes.draw do
-
   namespace :admin do
 
     resources :pages, :constraints => { :id => /.*/ } do
@@ -36,5 +35,4 @@ Spree::Core::Engine.routes.append do
   resources :pages
 
   match '*page_path', :to => "pages#show", :as => :page, :constraints => Spree::PossiblePage.new
-
 end
