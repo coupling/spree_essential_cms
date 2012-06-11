@@ -2,7 +2,7 @@ class Spree::PossiblePage
   def matches?(request)
     non_page_routes = ['admin', 'account', 'cart', 'checkout', 'content', 'login', 'pg/', 'orders', 'products', 's/', 'session', 'signup', 'shipments', 'states', 't/', 'tax_categories', 'user']
     non_page_routes.each{|r| return false if request.path.include?(r)}
-    !Spree::Page.active.find_by_path(request.fullpath.gsub(/^\/pages/, '')).nil?
+    !Spree::Page.active.find_by_path(request.path.gsub(/^\/pages/, '')).nil?
   end
 end
 
