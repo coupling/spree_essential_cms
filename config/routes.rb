@@ -1,8 +1,9 @@
 class Spree::PossiblePage
-  def self.matches?(request) 
-    return false if request.fullpath =~ /(^\/+(admin|account|cart|checkout|content|login|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user)+)/
-    !Spree::Page.active.find_by_path(request.fullpath).nil?
-  end
+  def matches?(request)
+    non_page_routes = ['admin', 'account', 'cart', 'checkout', 'content', 'login', 'pg/', 'orders', 'products', 's/', 'session', 'signup', 'shipments', 'states', 't/', 'tax_categories', 'user']
+    non_page_routes.each{|r| return false if request.path.include?(r)}
+    !Spree::Page.active.find_by_path(request.fullpath).nil?
+  end
 end
 
 Spree::Core::Engine.routes.draw do
@@ -31,9 +32,6 @@ Spree::Core::Engine.routes.draw do
 end
 
 Spree::Core::Engine.routes.append do
-  
-  constraints(Spree::PossiblePage) do
-    get '(:page_path)', :to => 'pages#show', :page_path => /.*/, :as => :page
-  end
-  
+  resources :pages
+  match '/pages/*page_path', :to => "pages#show", :as => :page, :constraints => Spree::PossiblePage.new
 end
