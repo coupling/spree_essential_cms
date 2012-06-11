@@ -3,7 +3,6 @@ class Spree::Content < ActiveRecord::Base
   attr_accessor :delete_attachment
 
   belongs_to :page
-  validates_associated :page
   validates_presence_of :title, :page
 
   default_scope order(:position)
