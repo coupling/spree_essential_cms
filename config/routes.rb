@@ -1,8 +1,9 @@
 class Spree::PossiblePage
-  def matches?(request)
+  def self.matches?(request)
     non_page_routes = ['admin', 'account', 'cart', 'checkout', 'content', 'login', 'pg/', 'orders', 'products', 's/', 'session', 'signup', 'shipments', 'states', 't/', 'tax_categories', 'user']
     non_page_routes.each{|r| return false if request.path.include?(r)}
-    Spree::Page.active.find_by_path(request.path).present?
+    page = Spree::Page.active.find_by_path(request.path) rescue nil
+    page.present?
   end
 end
 
@@ -28,5 +29,5 @@ Spree::Core::Engine.routes.draw do
   end
 
   resources :pages
-  get '*page_path', :to => "pages#show", :as => :page, :constraints => Spree::PossiblePage.new
+  get '*page_path', :to => "pages#show", :as => :page, :constraints => Spree::PossiblePage
 end
