@@ -31,8 +31,10 @@ Spree::Core::Engine.routes.draw do
 end
 
 Spree::Core::Engine.routes.append do
-
   resources :pages
 
   match '*page_path', :to => "pages#show", :as => :page, :constraints => Spree::PossiblePage.new
+  constraints(Spree::PossiblePage) do
+    get '(:page_path)', :to => 'pages#show', :page_path => /.*/, :as => :page
+  end
 end

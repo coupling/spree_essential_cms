@@ -14,6 +14,9 @@ Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 Add spree_essential_cms to your Gemfile:
 
 ```ruby
+# Spree 1.1.x
+gem 'spree_essential_cms', '~> 0.4.0'
+
 # Spree 1.0.x
 gem 'spree_essential_cms', '~> 0.3.0.rc1'
 
@@ -100,7 +103,7 @@ Use a content decorator when you want different contexts to have their own image
 
 # app/models/content_decorator.rb
 
-Content.class_eval do
+Spree::Content.class_eval do
 
   # override default image sizes
   def default_attachment_sizes
@@ -179,6 +182,11 @@ If for any reason you want to re-create your `test/dummy` app, just re-run `bund
 Change Log
 ------------------------------------------------------------------------------
 
+**0.4.0 - 2012/5/1**
+
+* Add support for Spree 1.1.x
+
+
 **0.3.0.rc1 - 2012/1/16**
 
 * Add support for Spree 1.0.x
@@ -216,7 +224,6 @@ Change Log
 To Do
 ------------------------------------------------------------------------------
 
-* more tests... many many more.
 * optimizations
 * A 'create translation' button that clones the current page's contents into another language
 * add widgets that you can drop into any page
@@ -232,6 +239,7 @@ Contributors
 * Spencer Steffen ([@citrus](https://github.com/citrus))
 * Stéphane Bounmy ([@sbounmy](https://github.com/sbounmy))
 * Kyle West ([@kylewest](https://github.com/kylewest))
+* Derek Ethier ([@ethier](https://github.com/ethier))
 * [@kpitn](https://github.com/kpitn)
 
 
