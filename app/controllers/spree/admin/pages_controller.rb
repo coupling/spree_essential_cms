@@ -1,5 +1,5 @@
 class Spree::Admin::PagesController < Spree::Admin::ResourceController
-  
+
   def location_after_save
     case params[:action]
       when "create"
@@ -24,7 +24,7 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
     def find_resource
       @page ||= ::Spree::Page.find_by_path(params[:id])
     end
-    
+
     def collection
       params[:q] ||= {}
       params[:q][:s] ||= "position asc"
