@@ -1,9 +1,11 @@
-<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Page Details"} %>
+<% content_for :page_title do %>
+  <%= t('.new_page') %>
+<% end %>
+
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @page } %>
 
 <%= form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
-  <fieldset>
-    <legend><%= t('.new_page') %></legend>
+  <fieldset class="no-border-top">
     <%= render "form", :form => f %>
     <%= render :partial => 'spree/admin/shared/new_resource_links' %>
   </fieldset>
